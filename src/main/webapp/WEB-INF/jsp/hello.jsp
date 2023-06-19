@@ -42,7 +42,7 @@
               "
             >
             </canvas>
-            <!-- <input
+            <input
               type="range"
               id="video-slider"
               min="0"
@@ -51,7 +51,7 @@
               step="1"
               data-slider-tooltip="always"
               oninput="onSliderChange(this.value)"
-            />     -->
+            /> 
           </div>
         </div>
         </div>
