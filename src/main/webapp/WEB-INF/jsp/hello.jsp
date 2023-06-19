@@ -21,10 +21,10 @@
     <div class="wrapper" style="    margin: 0 auto;
     padding: 5px;
     box-sizing: border-box;
-    max-width: 2120px;">
+    max-width: 1120px;">
       <!-- <aside class="main-sidebar"></aside> -->
       <div class="card card-outline card-lightblue">
-        <div class="card-header" style="width:2065 !important"><img decoding="async" style="height:30px" src="css/syulogo.png"> 캡스톤디자인2</div>
+        <div class="card-header" style="width:1065 !important"><img decoding="async" style="height:30px" src="css/syulogo.png"> 캡스톤디자인2</div>
       </div>
       <!-- <div class="content-wrapper"> -->
         <div style="display: flex; flex-direction: row">
@@ -33,7 +33,7 @@
           <div class="card-body" >
             <canvas
               id="canvas"
-              width="2065"
+              width="1065"
               height="750"
               style="
                 text-align: center;
