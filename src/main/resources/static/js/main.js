@@ -13,7 +13,7 @@ const camera4Button = document.getElementById("camera4");
 const camera5Button = document.getElementById("camera5");
 const camera6Button = document.getElementById("camera6");
 const camera7Button = document.getElementById("camera7");
-const transitionButton = document.getElementById("transition");
+const transitionButton = document.getElementById("rotation");
 const videoSlider = document.getElementById("video-slider");
 const camera_number = 7;
 let camera_index = 0;
@@ -37,11 +37,11 @@ prevButton.addEventListener("click", prevVideoFunction);
 nextButton.addEventListener("click", nextVideoFunction);
 transitionButton.addEventListener("click", transitionFunction);
 rotate180Button.addEventListener("click", function () {
-  init(180, 1081);
+  init(180, 961);
   camera_index = 0;
 });
 rotate360Button.addEventListener("click", function () {
-  init(360, 1096);
+  init(360, 861);
   camera_index = 0;
 });
 camera1Button.addEventListener("click", function () {
@@ -77,16 +77,16 @@ function init(angle, length) {
   imageURL7 = [];
 
   for (let i = 1; i <= length; i++) {
-    imageURL1.push(`camera1/${angle}far/${i}.jpg`);
-    imageURL2.push(`camera2/${angle}far/${i}.jpg`);
-    imageURL3.push(`camera3/${angle}far/${i}.jpg`);
-    imageURL4.push(`camera4/${angle}far/${i}.jpg`);
-    imageURL5.push(`camera5/${angle}far/${i}.jpg`);
-    imageURL6.push(`camera6/${angle}far/${i}.jpg`);
-    imageURL7.push(`camera7/${angle}far/${i}.jpg`);
+    imageURL1.push(`/img/camera1/${angle}/${i}.jpg`);
+    imageURL2.push(`/img/camera2/${angle}/${i}.jpg`);
+    imageURL3.push(`/img/camera3/${angle}/${i}.jpg`);
+    imageURL4.push(`/img/camera4/${angle}/${i}.jpg`);
+    imageURL5.push(`/img/camera5/${angle}/${i}.jpg`);
+    imageURL6.push(`/img/camera6/${angle}/${i}.jpg`);
+    imageURL7.push(`/img/camera7/${angle}/${i}.jpg`);
   }
 }
-init(180, 1081);
+init(180, 961);
 
 //현재 카메라인덱스에 해당하는 이미지 배열 가져오는 함수
 function getCamDir(cam_num) {
