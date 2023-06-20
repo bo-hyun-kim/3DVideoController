@@ -59,10 +59,10 @@
           <div class="card card-outline card-primary">
             <div class="card-header card-primary">버튼</div>
             <div class="card-body">
-              <a class="btn btn-app" id="backward"> <i class="fas fa-backward"></i> Prev </a>
+              <a class="btn btn-app" id="backward"> <i class="fas fa-arrow-left"></i> Prev </a>
               <a class="btn btn-app" id="play"> <i class="fas fa-play"></i> Play </a>
               <a class="btn btn-app" id="pause"> <i class="fas fa-pause"></i> Pause </a>
-              <a class="btn btn-app" id="forward"> <i class="fas fa-forward"></i> Next </a>
+              <a class="btn btn-app" id="forward"> <i class="fas fa-arrow-right"></i> Next </a>
               <a class="btn btn-app" id="180"> <i class="fas fa-adjust"></i> 180 </a>
               <a class="btn btn-app" id="360"> <i class="fas fa-circle"></i> 360 </a>  
               <a class="btn btn-app" id="rotation"> <i class="fas fa-redo"></i> rotation </a>  

@@ -45,24 +45,45 @@ rotate360Button.addEventListener("click", function () {
   camera_index = 0;
 });
 camera1Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(0);
+  }
   camera_index = 0;
 });
 camera2Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(1);
+  }
   camera_index = 1;
 });
 camera3Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(2);
+  }
   camera_index = 2;
 });
 camera4Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(3);
+  }
   camera_index = 3;
 });
 camera5Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(4);
+  }
   camera_index = 4;
 });
 camera6Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(5);
+  }
   camera_index = 5;
 });
 camera7Button.addEventListener("click", function () {
+  if (isPaused) {
+    pausedTransition(6);
+  }
   camera_index = 6;
 });
 
@@ -106,6 +127,18 @@ function getCamDir(cam_num) {
     imageUrl = imageURL7;
   }
 }
+
+function pausedTransition(cam) {
+  getCamDir(cam);
+  const img = new Image();
+  img.src = imageUrl[i];
+  img.onload = () => {
+    myContext.drawImage(img, 0, 0);
+    const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
+    videoSlider.value = sliderValue;
+  };
+}
+
 //실행버튼 클릭시 동작
 function draw_image() {
   if (myTimeout) {
@@ -115,7 +148,7 @@ function draw_image() {
   getCamDir(c_index);
   const img = new Image();
   img.src = imageUrl[i];
-  console.log("img i값" + i);
+  // console.log("img i값" + i);
   img.onload = () => {
     //img가 로드되면 drawImage 메서드 실행
     myContext.drawImage(img, 0, 0); //img: 그려질 이미지를 나타내는 요소, x: 이미지의 x좌표, y: 이미지의 y좌표
@@ -134,11 +167,14 @@ function draw_image() {
 function playVideoFunction() {
   draw_image();
   isPaused = false;
+  // console.log("play 버튼 눌렀을때 isPaused", isPaused);
 }
 
 function pauseVideoFunction() {
+  isPaused = true;
   clearTimeout(myTimeout);
   clearInterval(myInterval);
+  // console.log("정지 버튼 눌렀을때 isPaused", isPaused);
 }
 
 function prevVideoFunction() {
@@ -171,9 +207,9 @@ function transitionFunction() {
     };
     camera_index++;
     if (camera_index == 7) {
-      setTimeout(draw_image, 1000);
+      setTimeout(draw_image, 50);
     }
-  }, 1000);
+  }, 300);
 }
 
 // 슬라이더 값이 변경되었을 때 실행되는 함수
@@ -189,6 +225,7 @@ videoSlider.addEventListener("input", function () {
 
 //키 관련 이벤트리스너
 window.addEventListener("keydown", function (event) {
+  console.log("스페이스바를 눌렀을때", isPaused);
   if (event.key == "ArrowLeft") {
     // left
     if (camera_index === 0) {
@@ -201,14 +238,14 @@ window.addEventListener("keydown", function (event) {
     camera_index = ++camera_index % camera_number;
     draw_image();
   } else if (isPaused == false && event.key == " ") {
+    console.log(isPaused);
     // 스페이스바 키
-    draw_image();
     pauseVideoFunction();
-    isPaused = true;
+    console.log("스페이스바로 정지");
   } else if (isPaused == true && event.key == " ") {
+    console.log(isPaused);
     // 스페이스바 키
-    draw_image();
     playVideoFunction();
-    isPaused = false;
+    console.log("스페이스바로 실행");
   }
 });
