@@ -208,12 +208,13 @@ function transitionFunction() {
     if (camera_index == 7) {
       setTimeout(draw_image, 50);
     }
-  }, 300);
+  }, 210);
 }
 
 // 슬라이더 값이 변경되었을 때 실행되는 함수
 function onSliderChange(value) {
   i = Math.floor((value * (imageUrl.length - 1)) / 100); // 슬라이더 값에 따라 이미지 인덱스 계산
+  camera_index = Math.floor((value * camera_number) / 100); //카메라 인덱스 업데이트
   draw_image(); // 이미지를 그림
 }
 
