@@ -14,6 +14,10 @@
         width: 100%;
         margin-top: 10px;
       }
+      #rotatespeed-slider {
+        width: 50%;
+        margin-left: 10px;
+      }
     </style>
   </head>
   <body>
@@ -49,7 +53,6 @@
               max="100"
               value="0"
               step="1"
-              data-slider-tooltip="always"
               oninput="onSliderChange(this.value)"
             /> 
           </div>
@@ -66,6 +69,16 @@
               <a class="btn btn-app" id="180"> <i class="fas fa-adjust"></i> 180 </a>
               <a class="btn btn-app" id="360"> <i class="fas fa-circle"></i> 360 </a>  
               <a class="btn btn-app" id="rotation"> <i class="fas fa-redo"></i> rotation </a>  
+              <input
+              type="range"
+              id="rotatespeed-slider"
+              min="100"
+              max="400"
+              value="210"
+              step="10"
+              oninput="onVideoSliderChange(this.value)"
+            /> 
+            <span id="rotatespeed-value">210</span>
             </div>
           </div>
           <div class="card card-outline card-primary">

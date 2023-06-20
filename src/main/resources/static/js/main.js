@@ -26,9 +26,13 @@ let imageURL3 = [];
 let imageURL4 = [];
 let imageURL5 = [];
 let imageURL6 = [];
+let imageURL7 = [];
 let myTimeout = 0;
 let myInterval = 0;
 let isPaused = false;
+let rotationSpeed = 210;
+const rotatespeedSlider = document.getElementById("rotatespeed-slider");
+const rotatespeedValue = document.getElementById("rotatespeed-value");
 
 //클릭 이벤트 리스너
 playButton.addEventListener("click", playVideoFunction);
@@ -208,9 +212,11 @@ function transitionFunction() {
     if (camera_index == 7) {
       setTimeout(draw_image, 50);
     }
-  }, 210);
+  }, rotationSpeed);
+  console.log("rotationspeed: " + rotationSpeed);
 }
 
+//재생바 슬라이더
 // 슬라이더 값이 변경되었을 때 실행되는 함수
 function onSliderChange(value) {
   i = Math.floor((value * (imageUrl.length - 1)) / 100); // 슬라이더 값에 따라 이미지 인덱스 계산
@@ -221,6 +227,18 @@ function onSliderChange(value) {
 // 슬라이더 값 관련 이벤트 리스너
 videoSlider.addEventListener("input", function () {
   onSliderChange(videoSlider.value);
+});
+
+//rotation속도 슬라이더
+// 슬라이더 값이 변경되었을 때 실행되는 함수
+function onVideoSliderChange(value) {
+  rotationSpeed = parseInt(value);
+  rotatespeedValue.textContent = rotationSpeed.toString();
+}
+
+// 슬라이더 값 관련 이벤트 리스너
+rotatespeedSlider.addEventListener("input", function () {
+  onVideoSliderChange(rotatespeedSlider.value);
 });
 
 //키 관련 이벤트리스너
