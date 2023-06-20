@@ -171,7 +171,6 @@ function playVideoFunction() {
 }
 
 function pauseVideoFunction() {
-  isPaused = true;
   clearTimeout(myTimeout);
   clearInterval(myInterval);
   // console.log("정지 버튼 눌렀을때 isPaused", isPaused);
@@ -225,7 +224,7 @@ videoSlider.addEventListener("input", function () {
 
 //키 관련 이벤트리스너
 window.addEventListener("keydown", function (event) {
-  console.log("스페이스바를 눌렀을때", isPaused);
+  //console.log("스페이스바를 눌렀을때", isPaused);
   if (event.key == "ArrowLeft") {
     // left
     if (camera_index === 0) {
@@ -241,11 +240,12 @@ window.addEventListener("keydown", function (event) {
     console.log(isPaused);
     // 스페이스바 키
     pauseVideoFunction();
-    console.log("스페이스바로 정지");
+    isPaused = true;
+    //console.log("스페이스바로 정지");
   } else if (isPaused == true && event.key == " ") {
     console.log(isPaused);
     // 스페이스바 키
     playVideoFunction();
-    console.log("스페이스바로 실행");
+    //console.log("스페이스바로 실행");
   }
 });
