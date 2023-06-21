@@ -196,9 +196,9 @@ function nextVideoFunction() {
 //현재 카메라 시점 기준 시점 변경만 해준 후 마지막 시점에서 play
 function transitionFunction() {
   pauseVideoFunction();
-  if (camera_index >= 7) {
+  if (camera_index <= 5) {
     camera_index = 0;
-  }
+  
   myInterval = setInterval(() => {
     getCamDir(camera_index);
     const img = new Image();
@@ -209,11 +209,30 @@ function transitionFunction() {
       videoSlider.value = sliderValue;
     };
     camera_index++;
-    if (camera_index == 7) {
-      setTimeout(draw_image, 50);
+    console.log("camera index" + camera_index);
+    if (camera_index == 6) {
+      setTimeout(draw_image, rotationSpeed);
     }
-  }, rotationSpeed);
-  console.log("rotationspeed: " + rotationSpeed);
+  }, rotationSpeed);}
+  else {
+    camera_index = 6;
+  
+  myInterval = setInterval(() => {
+    getCamDir(camera_index);
+    const img = new Image();
+    img.src = imageUrl[i];
+    img.onload = () => {
+      myContext.drawImage(img, 0, 0);
+      const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
+      videoSlider.value = sliderValue;
+    };
+    camera_index--;
+    console.log("camera index" + camera_index);
+    if (camera_index == 0) {
+      setTimeout(draw_image, rotationSpeed);
+    }
+  }, rotationSpeed);}
+  //console.log("rotationspeed: " + rotationSpeed);
 }
 
 //재생바 슬라이더
@@ -251,18 +270,20 @@ window.addEventListener("keydown", function (event) {
     }
     camera_index = --camera_index % camera_number;
     draw_image();
+    console.log(camera_index);
   } else if (event.key == "ArrowRight") {
     // right
     camera_index = ++camera_index % camera_number;
     draw_image();
+    console.log(camera_index);
   } else if (isPaused == false && event.key == " ") {
-    console.log(isPaused);
+    //console.log(isPaused);
     // 스페이스바 키
     pauseVideoFunction();
     isPaused = true;
     //console.log("스페이스바로 정지");
   } else if (isPaused == true && event.key == " ") {
-    console.log(isPaused);
+    //console.log(isPaused);
     // 스페이스바 키
     playVideoFunction();
     //console.log("스페이스바로 실행");
