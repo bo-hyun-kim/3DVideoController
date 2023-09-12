@@ -177,6 +177,7 @@ function playVideoFunction() {
 function pauseVideoFunction() {
   clearTimeout(myTimeout);
   clearInterval(myInterval);
+  isPaused = true;
   // console.log("정지 버튼 눌렀을때 isPaused", isPaused);
 }
 
@@ -198,40 +199,41 @@ function transitionFunction() {
   pauseVideoFunction();
   if (camera_index <= 5) {
     camera_index = 0;
-  
-  myInterval = setInterval(() => {
-    getCamDir(camera_index);
-    const img = new Image();
-    img.src = imageUrl[i];
-    img.onload = () => {
-      myContext.drawImage(img, 0, 0);
-      const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
-      videoSlider.value = sliderValue;
-    };
-    camera_index++;
-    console.log("camera index" + camera_index);
-    if (camera_index == 6) {
-      setTimeout(draw_image, rotationSpeed);
-    }
-  }, rotationSpeed);}
-  else {
+
+    myInterval = setInterval(() => {
+      getCamDir(camera_index);
+      const img = new Image();
+      img.src = imageUrl[i];
+      img.onload = () => {
+        myContext.drawImage(img, 0, 0);
+        const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
+        videoSlider.value = sliderValue;
+      };
+      camera_index++;
+      console.log("camera index" + camera_index);
+      if (camera_index == 6) {
+        setTimeout(draw_image, rotationSpeed);
+      }
+    }, rotationSpeed);
+  } else {
     camera_index = 6;
-  
-  myInterval = setInterval(() => {
-    getCamDir(camera_index);
-    const img = new Image();
-    img.src = imageUrl[i];
-    img.onload = () => {
-      myContext.drawImage(img, 0, 0);
-      const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
-      videoSlider.value = sliderValue;
-    };
-    camera_index--;
-    console.log("camera index" + camera_index);
-    if (camera_index == 0) {
-      setTimeout(draw_image, rotationSpeed);
-    }
-  }, rotationSpeed);}
+
+    myInterval = setInterval(() => {
+      getCamDir(camera_index);
+      const img = new Image();
+      img.src = imageUrl[i];
+      img.onload = () => {
+        myContext.drawImage(img, 0, 0);
+        const sliderValue = Math.floor((i / (imageUrl.length - 1)) * 100);
+        videoSlider.value = sliderValue;
+      };
+      camera_index--;
+      console.log("camera index" + camera_index);
+      if (camera_index == 0) {
+        setTimeout(draw_image, rotationSpeed);
+      }
+    }, rotationSpeed);
+  }
   //console.log("rotationspeed: " + rotationSpeed);
 }
 
