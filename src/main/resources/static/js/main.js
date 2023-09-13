@@ -187,11 +187,15 @@ function prevVideoFunction() {
   }
   camera_index = --camera_index % camera_number;
   draw_image();
+  if(isPaused)
+  pauseVideoFunction();
 }
 
 function nextVideoFunction() {
   camera_index = ++camera_index % camera_number;
   draw_image();
+  if(isPaused)
+  pauseVideoFunction();
 }
 
 //현재 카메라 시점 기준 시점 변경만 해준 후 마지막 시점에서 play
@@ -272,11 +276,15 @@ window.addEventListener("keydown", function (event) {
     }
     camera_index = --camera_index % camera_number;
     draw_image();
+    if(isPaused)
+    pauseVideoFunction();
     console.log(camera_index);
   } else if (event.key == "ArrowRight") {
     // right
     camera_index = ++camera_index % camera_number;
     draw_image();
+    if(isPaused)
+    pauseVideoFunction();
     console.log(camera_index);
   } else if (isPaused == false && event.key == " ") {
     //console.log(isPaused);
