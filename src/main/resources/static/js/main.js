@@ -183,20 +183,31 @@ function pauseVideoFunction() {
 }
 
 function prevVideoFunction() {
-  if (camera_index === 0) {
-    camera_index = 6;
+  if(isPaused) {
+    if (camera_index === 0) {
+      camera_index = 6;
+    }
+    camera_index = --camera_index % camera_number;
+    draw_image();
+    pauseVideoFunction();
+  } else {
+    if (camera_index === 0) {
+      camera_index = 6;
+    }
+    camera_index = --camera_index % camera_number;
+    draw_image();
   }
-  camera_index = --camera_index % camera_number;
-  draw_image();
-  if(isPaused)
-  pauseVideoFunction();
 }
 
 function nextVideoFunction() {
-  camera_index = ++camera_index % camera_number;
-  draw_image();
-  if(isPaused)
-  pauseVideoFunction();
+  if(isPaused) {
+    camera_index = ++camera_index % camera_number;
+    draw_image();
+    pauseVideoFunction();
+  } else {
+    camera_index = ++camera_index % camera_number;
+    draw_image();
+  }
 }
 
 //현재 카메라 시점 기준 시점 변경만 해준 후 마지막 시점에서 play
@@ -272,32 +283,40 @@ window.addEventListener("keydown", function (event) {
   //console.log("스페이스바를 눌렀을때", isPaused);
   if (event.key == "ArrowLeft") {
     // left
-    if (camera_index === 0) {
-      camera_index = 7;
+    if(isPaused) {
+      if (camera_index === 0) {
+        camera_index = 6;
+      }
+      camera_index = --camera_index % camera_number;
+      draw_image();
+      pauseVideoFunction();
+    } else {
+      if (camera_index === 0) {
+        camera_index = 6;
+      }
+      camera_index = --camera_index % camera_number;
+      draw_image();
     }
-    camera_index = --camera_index % camera_number;
-    draw_image();
-    if(isPaused)
-    pauseVideoFunction();
-    console.log(camera_index);
   } else if (event.key == "ArrowRight") {
-    // right
-    camera_index = ++camera_index % camera_number;
-    draw_image();
-    if(isPaused)
-    pauseVideoFunction();
-    console.log(camera_index);
+    if(isPaused) {
+      camera_index = ++camera_index % camera_number;
+      draw_image();
+      pauseVideoFunction();
+    } else {
+      camera_index = ++camera_index % camera_number;
+      draw_image();
+    }
   } else if (isPaused == false && event.key == " ") {
     console.log(isPaused);
     // 스페이스바 키
     pauseVideoFunction();
     isPaused = true;
-    console.log("스페이스바로 정지");
+    console.log("stop");
   } else if (isPaused == true && event.key == " ") {
     console.log(isPaused);
     // 스페이스바 키
     playVideoFunction();
-    console.log("스페이스바로 실행");
+    console.log("spacebar(resume)");
     isPaused = false;
   }
 });
