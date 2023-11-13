@@ -147,6 +147,7 @@ function pausedTransition(cam) {
 function draw_image() {
   if (myTimeout) {
     pauseVideoFunction();
+    isPaused = false;
   }
   let c_index = camera_index;
   getCamDir(c_index);
@@ -171,14 +172,14 @@ function draw_image() {
 function playVideoFunction() {
   draw_image();
   isPaused = false;
-  // console.log("play 버튼 눌렀을때 isPaused", isPaused);
+  console.log("play 버튼 눌렀을때 isPaused", isPaused);
 }
 
 function pauseVideoFunction() {
   clearTimeout(myTimeout);
   clearInterval(myInterval);
   isPaused = true;
-  // console.log("정지 버튼 눌렀을때 isPaused", isPaused);
+  console.log("정지 버튼 눌렀을때 isPaused", isPaused);
 }
 
 function prevVideoFunction() {
@@ -287,15 +288,16 @@ window.addEventListener("keydown", function (event) {
     pauseVideoFunction();
     console.log(camera_index);
   } else if (isPaused == false && event.key == " ") {
-    //console.log(isPaused);
+    console.log(isPaused);
     // 스페이스바 키
     pauseVideoFunction();
     isPaused = true;
-    //console.log("스페이스바로 정지");
+    console.log("스페이스바로 정지");
   } else if (isPaused == true && event.key == " ") {
-    //console.log(isPaused);
+    console.log(isPaused);
     // 스페이스바 키
     playVideoFunction();
-    //console.log("스페이스바로 실행");
+    console.log("스페이스바로 실행");
+    isPaused = false;
   }
 });
