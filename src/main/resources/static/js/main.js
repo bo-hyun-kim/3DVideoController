@@ -19,6 +19,7 @@ const camera_number = 7;
 let camera_index = 0;
 let photo_index = 1;
 let i = 1;
+let a = 0;
 let imageUrl = [];
 let imageURL1 = [];
 let imageURL2 = [];
