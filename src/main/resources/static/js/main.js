@@ -1,5 +1,7 @@
-const video = document.getElementById("canvas");
+const video = document.getElementById("canvas1");
 const myContext = video.getContext("2d");
+const video2 = document.getElementById("canvas2");
+const myContext2 = video2.getContext("2d");
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");
 const prevButton = document.getElementById("backward");
@@ -320,4 +322,53 @@ window.addEventListener("keydown", function (event) {
     console.log("spacebar(resume)");
     isPaused = false;
   }
+});
+
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+
+// 마우스로 그림을 그리기 시작
+function startDrawing(e) {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+}
+
+// 마우스 이동 중 그림 그리기
+function draw(e) {
+    if (!isDrawing) return;
+
+    myContext2.strokeStyle;
+    myContext2.lineWidth = 2;
+    myContext2.lineCap = "round";
+
+    myContext2.beginPath();
+    myContext2.moveTo(lastX, lastY);
+    myContext2.lineTo(e.offsetX, e.offsetY);
+    myContext2.stroke();
+
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+}
+
+// 그림 그리기 종료
+function stopDrawing() {
+    isDrawing = false;
+}
+
+video2.addEventListener("mousedown", startDrawing);
+video2.addEventListener("mousemove", draw);
+video2.addEventListener("mouseup", stopDrawing);
+
+document.querySelectorAll(".color-button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    if (button.id === "eraseall") {
+      // "eraseall" 버튼 클릭 시 모든 그림을 지움
+      myContext2.clearRect(0, 0, video2.width, video2.height);
+    } else {
+      // 다른 색상 버튼 클릭 시 해당 색상으로 설정
+      myContext2.globalCompositeOperation = "source-over";
+      myContext2.strokeStyle = button.style.backgroundColor;
+      myContext2.fillStyle = button.style.backgroundColor;
+    }
+  });
 });

@@ -30,21 +30,37 @@
         </div>
         <div class="context-wrapper">
           <div class="ui">
-            <div style="display: flex; justify-content: center; align-items: center;" class="card-body">
+            <div style="display: flex; justify-content: center; align-items: center;" class="card-body" style="position: relative;">
               <canvas
-                id="canvas"
+                id="canvas1"
                 width="1320"
                 height="700"
                 style="border: none !important;
                        border: 1px solid;
                        background-size: cover;
                        margin-top: 20px;
-                       margin-left: 30px;"
-              >
+                       margin-left: 30px;
+                       z-index: 1;"
+              ></canvas>
+              <canvas
+                  id="canvas2"
+                  width="1320"
+                  height="700"
+                  style="border: none !important;
+                       border: 1px solid;
+                       background-size: cover;
+                       margin-top: 20px;
+                       margin-left: 30px;
+                       z-index: 2;
+                       position: absolute;
+                  "
+                >
+                </canvas>
               </div>
+              
             
             <div class="ui-actions">
-              <div class="ui-cover-title">
+              <div class="ui-cover-title"> 
                 <h2 style="font-weight: bold;">tennis practice</h2>
                 <h4>student</h4>
               </div>
@@ -93,6 +109,27 @@
             <a class="btn btn-app" id="camera5"> <i class="fas fa-camera"></i> #5 </a>
             <a class="btn btn-app" id="camera6"> <i class="fas fa-camera"></i> #6 </a>
             <a class="btn btn-app" id="camera7"> <i class="fas fa-camera"></i> #7 </a>
+          </div>
+              <div class="color-palette" style="align-items:center;">
+                <button class="color-button" style="border-radius: 50%; background-color: red; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color: green; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color: blue; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color: yellow; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color: black; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color: white; width: 50px; height: 50px;"></button>
+                <span class="color-label"></span>
+        
+                <button class="color-button" style="border-radius: 50%; background-color:  white; width: 50px; height: 50px;" id="eraseall">Del</button>
           </div>
         </div>
     </div>
